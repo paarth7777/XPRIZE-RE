@@ -235,3 +235,23 @@ def get_norm_value(mol, K, M, fragmentation_scheme='OG', filepath="norm.csv"):
         return None
 
     print('Norm not found!')
+
+def print_Qubit_Toff(resources):
+    '''Function for printing the resources for a circuit'''
+    qubit_count = resources.qubit_manager.total_qubits
+    toffoli_count = resources.clean_gate_counts.get("Toffoli", 0)
+    
+    if toffoli_count > 9999:
+        toffoli_count = f"{toffoli_count:.3E}"
+    
+    print(f'Qubit Count = {qubit_count}')
+    print(f'Toffoli Count = {toffoli_count}')
+
+def print_Toff(resources):
+    '''Function for printing the resources for a circuit'''
+    toffoli_count = resources.clean_gate_counts.get("Toffoli", 0)
+    
+    if toffoli_count > 9999:
+        toffoli_count = f"{toffoli_count:.3E}"
+ 
+    print(f'Toffoli Count = {toffoli_count}')
