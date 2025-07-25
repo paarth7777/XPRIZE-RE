@@ -198,7 +198,7 @@ def kin_frag(nstates, n_blocks, p, omegas):
 
     return kin_frag
 
-def get_norm_value(mol, K, M, fragmentation_scheme='OG', filepath="norm.csv"):
+def get_norm_value(mol, K, M, fragmentation_scheme):
     """
     Reads a CSV file to find and return a specific norm value.
 
@@ -206,15 +206,13 @@ def get_norm_value(mol, K, M, fragmentation_scheme='OG', filepath="norm.csv"):
         mol (str): The name of the molecule (e.g., 'no4a_monomer.pkl').
         K (int): The value from the second column.
         M (int): The value from the third column.
-        fragmentation_scheme (str): The fragmentation scheme (currently unused).
-        filepath (str): The path to the CSV file.
+        fragmentation_scheme (str): The fragmentation scheme.
 
     Returns:
         float: The corresponding norm value, or None if not found.
     """
-    # The fragmentation_scheme is not in the current data, so we can ignore it.
-    if fragmentation_scheme != 'OG':
-        print(f"Warning: Data for scheme '{fragmentation_scheme}' is not supported. Use 'OG' or change get_norm_value function in utils.py ")
+    mol = f'{mol}.pkl'
+    filepath=f"model_params/norms_{fragmentation_scheme}.csv"
 
     try:
         with open(filepath, mode='r', newline='') as data_file:
